@@ -1,0 +1,14 @@
+{
+  "pages":[
+    "pages/classic/classic"
+  ],
+  "window":{
+    "navigationBarBackgroundColor": "#fff",
+    "navigationBarTitleText": "沃尔特科技公司",
+    "navigationBarTextStyle":"black",
+    "navigationStyle": "default",
+    "backgroundColor": "#fff",
+    "enablePullDownRefresh": false,
+    "backgroundTextStyle":"light"
+  }
+}
