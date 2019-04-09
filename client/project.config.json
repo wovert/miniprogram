@@ -3,7 +3,7 @@
 	"packOptions": {
 		"ignore": []
 	},
-	"compileType": "plugin",
+	"compileType": "miniprogram",
 	"libVersion": "2.4.0",
 	"projectname": "client",
 	"scripts": {
@@ -12,7 +12,12 @@
 		"beforeUpload": "npm run compile"
 	},
 	"setting": {
-		"newFeature": true
+		"urlCheck": false,
+		"es6": true,
+		"postcss": true,
+		"minified": true,
+		"newFeature": true,
+		"autoAudits": false
 	},
 	"appid": "wx8e37091f1ca6b8bd",
 	"condition": {}
