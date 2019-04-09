@@ -27,7 +27,7 @@ $ npm install
 
 ### 安装 [sequelize官网](https://sequelize.readthedocs.io/en/v3)
 
-> Sequelize是一个基于promise的关系型数据库ORM框架，这个库完全采用JavaScript开发并且能够用在Node.JS环境中，易于使用，支持多SQL方言(dialect)，。它当前支持MySQL,、MariaDB、SQLite、PostgreSQL、Sql Server 数据库
+> Sequelize是一个基于**promise的关系型数据库ORM框架**，这个库完全采用JavaScript开发并且能够用在Node.JS环境中，易于使用，支持多SQL方言(dialect)，。它当前支持MySQL,、MariaDB、SQLite、PostgreSQL、Sql Server 数据库
 
 [github中文](https://github.com/demopark/sequelize-docs-Zh-CN/blob/master/querying.md)
 
@@ -37,16 +37,12 @@ $ npm install --save sequelize
 
 ### 安装 MySQL
 
-如果报错安装mysql2
+`$ npm install --save mysql mysql2`
 
-```sh
-$ npm install --save mysql
-```
-
-### 配置数据库连接
+### 配置数据库连接 - config/db.js
 
 ```js
-var Sequelize =  require('sequelize');
+var Sequelize =  require('sequelize')
 var sequelize = new Sequelize('database', 'name', 'password', {
   host: 'localhost',  // 数据库域名
   dialect: 'mysql',
@@ -55,7 +51,7 @@ var sequelize = new Sequelize('database', 'name', 'password', {
     min: 0,
     idle: 10000
   }
-});
+})
 module.exports = sequelize
 ```
 
@@ -91,7 +87,7 @@ module.exports = db.define('user', {
 }
 ```
 
-## 根据模型，进行增删改查操作
+### 根据模型，进行增删改查操作
 
 ```js
 var User = require('./models/user')
@@ -162,15 +158,13 @@ User.destroy({where:{id:102}})
   })
 ```
 
-### [sequelize-auto](https://github.com/sequelize/sequelize-auto) 
+### [sequelize-auto](https://github.com/sequelize/sequelize-auto)
 
-> 利用sequelize-auto对照数据库自动生成相应的models，使用sequelize-auto对照数据库自动生成相应的models减少了对数据库进行增删改查时的sql语句的编写。上面的模型如果很多的话，一个一个操作会很麻烦。利用插件可以减少工作量。
+> 利用插件sequelize-auto对照数据库自动生成相应的models可以减少工作量。使用sequelize-auto对照数据库自动生成相应的models减少了对数据库进行增删改查时的sql语句的编写。。
 
-```sh
-$ npm install sequelize-auto --save
-```
+`$ npm install sequelize-auto --save`
 
-### 编写自动生成模型
+### 编写自动生成模型 - auto.js
 
 ```js
 var SequelizeAuto = require('sequelize-auto')
@@ -191,15 +185,14 @@ auto.run(function (err) {
 });
 ```
 
-将数据库的表结构导出到 schema 文件夹
+将数据库的表结构导出到 schema 文件夹 `$ node auot.js`
 
 `sequelize-auto -o "./schema" -d terran -h 127.0.0.1 -u root -p 3306 -x root -e mysq`
-
 
 ### 在生成的 models 目录下，创建一个 index.js 将这些自动生成的数据库模型输入
 
 ```js
-var Sequelize =  require('sequelize');
+var Sequelize =  require('sequelize')
 
 /* 创建数据库连接 */
 var sequelize = new Sequelize("miniprogram", "root", "root",{
@@ -207,7 +200,7 @@ var sequelize = new Sequelize("miniprogram", "root", "root",{
   dialect: "mysql",
   underscored: true
 })
-/* 数据库模型名称配置及路径 */
+// 数据库模型名称配置及路径
 const models = [
   {
     "name": "ApplyInfo",
@@ -222,7 +215,7 @@ const models = [
     "path": "./tb_carousel.js"
   }
 ]
-/* 数据库模型输出 */
+// 数据库模型输出
 models.forEach(item => {
   module.exports[item.name] = require(item.path)(sequelize,Sequelize);
 })
@@ -233,23 +226,23 @@ models.forEach(item => {
 代码里边直接将数据库链接的 db.js 的代码也放里边。
 
 config/createdModelsExport.js
-```js
 
-var fs=require('fs')  //引入文件读写模块
-let files=fs.readdirSync('./moduels')  //读取所有的生成模块文件
+```js
+var fs=require('fs')  // 引入文件读写模块
+let files=fs.readdirSync('./moduels')  // 读取所有的生成模块文件
 let models = []
-files.forEach(item=>{
-    if(item!='index.js') {  //除了这个index.js
-        /**下面这段代码结果是将： tb_user.js  转换为name为 User  **/
-      let names = item.split('.')[0].split('_')  
-        let name = ''
-        for(let i=1;i<names.length;i++) {
-          name+=names[i].substring(0,1).toUpperCase() + names[i].substring(1)
-        }
-        models.push({name: name, path:"./"+item})
-    } 
+files.forEach(item => {
+  if (item!='index.js') {  // 除了这个index.js
+    // 下面这段代码结果是将： tb_user.js  转换为name为 User
+    let names = item.split('.')[0].split('_')  
+    let name = ''
+    for(let i = 1; i < names.length; i++) {
+      name += names[i].substring(0,1).toUpperCase() + names[i].substring(1)
+    }
+    models.push({name: name, path: "./" + item})
+  }
 })
-/**视情况未定**/
+// 视情况未定
 const template=`
 var Sequelize =  require('sequelize');
 /* 创建数据库连接 */
@@ -266,11 +259,11 @@ models.forEach(item=>{
 })
 `
 fs.writeFile('./index.js',template,function(){
-    console.log('success')
+  console.log('success')
 })
 ```
 
-## [apidoc官网](http://apidocjs.com/)
+### [apidoc官网](http://apidocjs.com/)
 
 > apidoc根据可以注释的代码生成web api文档
 
@@ -327,7 +320,7 @@ module.exports = [
 
 ## jwt
 
-> Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于JSON的开放标准（(RFC 7519).该token被设计为紧凑且安全的，特别适用于分布式站点的单点登录（SSO）场景。JWT的声明一般被用来在身份提供者和服务提供者间传递被认证的用户身份信息，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。
+> Json web token (JWT), 是为了在网络应用环境间传递声明而执行的一种基于**JSON的开放标准（(RFC 7519)**.该token被设计为紧凑且安全的，特别适用于**分布式站点的单点登录（SSO）场景**。JWT的声明一般被用来在**身份提供者和服务提供者间传递被认证的用户身份信息**，以便于从资源服务器获取资源，也可以增加一些额外的其它业务逻辑所必须的声明信息，该token也可直接被用于认证，也可被加密。
 
 ```sh
 安装
@@ -341,7 +334,6 @@ $ vim controllers/user.js
 
 要验证是否登陆的路由里，判断用户是否登录（即是请求头里是否包含token信息）比如，user分组里，对userlist的查询请求
 $ vim routes/index.js
-
 ```
 
 ## crypto
@@ -350,11 +342,11 @@ $ vim routes/index.js
 
 ## [formidable](https://www.npmjs.com/package/formidable)
 
-> 用于解析表单数据的Node.js模块，特别是文件上传。官网：
+> 用于**解析表单数据**的Node.js模块，特别是文件上传
 
 ## [winston](https://www.npmjs.com/package/winston) 和 [express-winston](https://www.npmjs.com/package/express-winston)
 
-> Winston是Node.js最流行的日志框架之一，设计为一个简单通用的日志库，支持多传输（在Winston中，一个传输实质上代表储存设备，也就是数据最终保存在哪里），每个Winston实例都可以对不同级别的日志配置不同的传输。
+> Winston是Node.js最流行的**日志框架**之一，设计为一个简单通用的日志库，支持多传输（在Winston中，一个传输实质上代表储存设备，也就是数据最终保存在哪里），每个Winston实例都可以对不同级别的日志配置不同的传输。
 > express-winston为您的express.js应用程序的请求和错误记录提供了中间件。
 
 安装：`npm install winston express-winston --save-dev`
@@ -363,7 +355,9 @@ $ vim routes/index.js
 
 ## [supervisor](https://www.npmjs.com/package/supervisor)
 
-> 实时监控我们服务端代码的变化，如果使用了这个工具，不需要每次修改完服端的代码之后的重启。我们使用全局安装即可：npm install supervisor -g
+> **实时监控**我们服务端代码的变化，如果使用了这个工具，不需要每次修改完服端的代码之后的重启。
+
+我们使用全局安装即可：`npm install supervisor -g`
 
 ## 使用pm2
 
