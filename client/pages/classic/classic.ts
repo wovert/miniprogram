@@ -1,12 +1,14 @@
 //index.js
 //获取应用实例
 import { IMyApp } from '../../app'
-import { Http } from '../../utils/http'
+import { ClassicModel } from '../../models/classic'
+let classic = new ClassicModel()
 
 const app = getApp<IMyApp>()
 
 Page({
   data: {
+    dataInfo: {},
     test: 1
   },
 
@@ -14,27 +16,11 @@ Page({
    * 监听页面加载
    */
   onLoad () {
-    // 异步调用
-    // wx.request({
-    //   url: 'http://bl.7yue.pro/v1/classic/latest',
-    //   header: {
-    //     appkey: 'RdshydjBvcYZhMZC'
-    //   },
-    //   success: (res: any) => {
-    //     console.log(this.data)
-    //     console.log(res)
-    //   }
-    // })
-    Http.request({
-      url: 'classic/latest',
-      success: (res: Object) => {
-        console.log(res)
-      },
-      fail: (err: Object) => {
-        // console.log(err)
-      }
+    classic.getLatest((res: Object) => {
+      this.setData({
+        dataInfo: res
+      })
     })
-
   },
 
   /** 

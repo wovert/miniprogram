@@ -15,7 +15,7 @@ const showError = (errorCode: Number) => {
   })
 }
 class Http {
-  static request (params: Object) {
+  request (params: Object) {
     wx.request({
       url: config.api_base_url + params.url,
       method: params.method ? params.method : 'GET', 
@@ -27,7 +27,7 @@ class Http {
       success!: (res?: Object) => {
         let code = res.statusCode.toString()
         if (code.startsWith('2')) {
-          params.success(res)
+          params.success && params.success(res.data)
         } else {
          showError(res.data.error_code)
         }
