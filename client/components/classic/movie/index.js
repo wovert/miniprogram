@@ -1,0 +1,10 @@
+"use strict";
+Component({
+    properties: {
+        img: String,
+        content: String
+    },
+    data: {},
+    methods: {}
+});
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsU0FBUyxDQUFDO0lBSVIsVUFBVSxFQUFFO1FBQ1YsR0FBRyxFQUFFLE1BQU07UUFDWCxPQUFPLEVBQUUsTUFBTTtLQUNoQjtJQUVELElBQUksRUFBRSxFQUNMO0lBRUQsT0FBTyxFQUFFLEVBRVI7Q0FDRixDQUFDLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJDb21wb25lbnQoe1xuICAvKipcbiAgICog57uE5Lu255qE5bGe5oCn5YiX6KGoXG4gICAqL1xuICBwcm9wZXJ0aWVzOiB7XG4gICAgaW1nOiBTdHJpbmcsXG4gICAgY29udGVudDogU3RyaW5nXG4gIH0sXG5cbiAgZGF0YToge1xuICB9LFxuXG4gIG1ldGhvZHM6IHtcblxuICB9XG59KVxuIl19

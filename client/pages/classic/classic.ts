@@ -2,13 +2,15 @@
 //获取应用实例
 import { IMyApp } from '../../app'
 import { ClassicModel } from '../../models/classic'
-let classic = new ClassicModel()
+import { LikeModel } from '../../models/like'
+let classicModel: ClassicModel = new ClassicModel()
+let likeModel: LikeModel = new LikeModel()
 
 const app = getApp<IMyApp>()
 
 Page({
   data: {
-    dataInfo: {},
+    dataInfo: null,
     test: 1
   },
 
@@ -16,7 +18,7 @@ Page({
    * 监听页面加载
    */
   onLoad () {
-    classic.getLatest((res: Object) => {
+    classicModel.getLatest((res: Object) => {
       this.setData({
         dataInfo: res
       })
@@ -28,6 +30,12 @@ Page({
    */
   onReady () {
   },
+
+  onLike: function (event: Object) {
+    let behavior = event.detail.behavior
+    likeModel.like(behavior, this.data.dataInfo.id, this.data.dataInfo.type)
+  },
+
   getUserInfo(e: any) {
     console.log(e)
     app.globalData.userInfo = e.detail.userInfo
