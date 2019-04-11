@@ -1,6 +1,6 @@
 <view class="container">
   <view class="header">
-    <c-epsoide class="epsoide" index="{{dataInfo.index}}" />
+    <c-episode class="episode" index="{{dataInfo.index}}" />
     <c-like class="like"
             bind:like="onLike" 
             like="{{likeStatus}}" 
@@ -8,7 +8,10 @@
   </view>
   <c-movie hidden="{{dataInfo.type !== 100}}" img="{{dataInfo.image}}" 
            content="{{dataInfo.content}}" />
-  <c-music hidden="{{dataInfo.type !== 200}}" img="{{dataInfo.image}}" 
+  <c-music wx:if="{{dataInfo.type==200}}"
+           img="{{dataInfo.image}}"
+           src="{{dataInfo.url}}"
+           title="{{dataInfo.title}}"
            content="{{dataInfo.content}}" />
   <c-essay hidden="{{dataInfo.type !== 300}}" img="{{dataInfo.image}}" 
            content="{{dataInfo.content}}" />

@@ -1,10 +1,8 @@
-//index.js
-//获取应用实例
 import { IMyApp } from '../../app'
 import { ClassicModel } from '../../models/classic'
 import { LikeModel } from '../../models/like'
-let classicModel: ClassicModel = new ClassicModel()
-let likeModel: LikeModel = new LikeModel()
+const classicModel: ClassicModel = new ClassicModel()
+const likeModel: LikeModel = new LikeModel()
 
 const app = getApp<IMyApp>()
 
@@ -39,7 +37,7 @@ Page({
   },
 
   onLike (event: any) {
-    let behavior = event.detail.behavior
+    const behavior = event.detail.behavior
     likeModel.like(behavior, this.data.dataInfo.id, this.data.dataInfo.type)
   },
 

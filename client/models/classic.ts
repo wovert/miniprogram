@@ -8,7 +8,7 @@ export class ClassicModel extends Http {
       success: (res: any) => {
         callback(res)
         this._setLatestIndex(res.index)
-        let key = this._getKey(res.index)
+        const key = this._getKey(res.index)
         wx.setStorageSync(key, res)
       }
     })
@@ -16,8 +16,8 @@ export class ClassicModel extends Http {
 
   getClassic (index: number, nextOrPrevious: string, callback: any) {
     // 缓存中读取数据
-    let key: string = nextOrPrevious === 'next' ? this._getKey(index + 1) : this._getKey(index -1)
-    let classic: object = wx.getStorageSync(key)
+    const key: string = nextOrPrevious === 'next' ? this._getKey(index + 1) : this._getKey(index -1)
+    const classic: object = wx.getStorageSync(key)
     if (!classic) {
       // 从接口中获取数据
       this.request({

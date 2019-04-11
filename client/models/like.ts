@@ -2,7 +2,7 @@ import { Http } from '../utils/http'
 
 export class LikeModel extends Http {
   like (behavior: string, art_id: number, type: number) {
-    let url: string = behavior === 'like' ? 'like' : 'like/cancel'
+    const url: string = behavior === 'like' ? 'like' : 'like/cancel'
     const data = {
       art_id,
       type
