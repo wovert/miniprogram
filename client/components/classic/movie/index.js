@@ -1,10 +1,11 @@
 "use strict";
+Object.defineProperty(exports, "__esModule", { value: true });
+var classic_beh_1 = require("../classic-beh");
 Component({
-    properties: {
-        img: String,
-        content: String
+    behaviors: [classic_beh_1.classicBeh],
+    data: {
+        tag: 'images/movie@tag.png'
     },
-    data: {},
     methods: {}
 });
-//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiO0FBQUEsU0FBUyxDQUFDO0lBSVIsVUFBVSxFQUFFO1FBQ1YsR0FBRyxFQUFFLE1BQU07UUFDWCxPQUFPLEVBQUUsTUFBTTtLQUNoQjtJQUVELElBQUksRUFBRSxFQUNMO0lBRUQsT0FBTyxFQUFFLEVBRVI7Q0FDRixDQUFDLENBQUEiLCJzb3VyY2VzQ29udGVudCI6WyJDb21wb25lbnQoe1xuICAvKipcbiAgICog57uE5Lu255qE5bGe5oCn5YiX6KGoXG4gICAqL1xuICBwcm9wZXJ0aWVzOiB7XG4gICAgaW1nOiBTdHJpbmcsXG4gICAgY29udGVudDogU3RyaW5nXG4gIH0sXG5cbiAgZGF0YToge1xuICB9LFxuXG4gIG1ldGhvZHM6IHtcblxuICB9XG59KVxuIl19
+//# sourceMappingURL=data:application/json;base64,eyJ2ZXJzaW9uIjozLCJmaWxlIjoiaW5kZXguanMiLCJzb3VyY2VSb290IjoiIiwic291cmNlcyI6WyJpbmRleC50cyJdLCJuYW1lcyI6W10sIm1hcHBpbmdzIjoiOztBQUFBLDhDQUF5QztBQUV6QyxTQUFTLENBQUM7SUFDUixTQUFTLEVBQUMsQ0FBQyx3QkFBVSxDQUFDO0lBQ3RCLElBQUksRUFBRTtRQUNKLEdBQUcsRUFBRSxzQkFBc0I7S0FDNUI7SUFDRCxPQUFPLEVBQUUsRUFFUjtDQUNGLENBQUMsQ0FBQSIsInNvdXJjZXNDb250ZW50IjpbImltcG9ydCB7Y2xhc3NpY0JlaH0gZnJvbSAnLi4vY2xhc3NpYy1iZWgnXG5cbkNvbXBvbmVudCh7XG4gIGJlaGF2aW9yczpbY2xhc3NpY0JlaF0sXG4gIGRhdGE6IHtcbiAgICB0YWc6ICdpbWFnZXMvbW92aWVAdGFnLnBuZydcbiAgfSxcbiAgbWV0aG9kczoge1xuXG4gIH1cbn0pXG4iXX0=

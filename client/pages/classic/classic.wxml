@@ -3,9 +3,14 @@
     <c-epsoide class="epsoide" index="{{dataInfo.index}}" />
     <c-like class="like"
             bind:like="onLike" 
-            like="{{dataInfo.like_status}}" 
-            count="{{dataInfo.fav_nums}}" />
+            like="{{likeStatus}}" 
+            count="{{likeCount}}" />
   </view>
-  <c-movie img="{{dataInfo.image}}" 
+  <c-movie hidden="{{dataInfo.type !== 100}}" img="{{dataInfo.image}}" 
            content="{{dataInfo.content}}" />
+  <c-music hidden="{{dataInfo.type !== 200}}" img="{{dataInfo.image}}" 
+           content="{{dataInfo.content}}" />
+  <c-essay hidden="{{dataInfo.type !== 300}}" img="{{dataInfo.image}}" 
+           content="{{dataInfo.content}}" />
+  <c-nav bind:left="onNext" bind:right="onPrevious" class="nav" title="{{dataInfo.title}}" first="{{first}}" latest="{{latest}}" />
 </view>

@@ -1,8 +1,8 @@
 import { Http } from '../utils/http'
 
 export class LikeModel extends Http {
-  like (behavior: String, art_id: Number, type: Number) {
-    let url: String = behavior === 'like' ? 'like' : 'like/cancel'
+  like (behavior: string, art_id: number, type: number) {
+    let url: string = behavior === 'like' ? 'like' : 'like/cancel'
     const data = {
       art_id,
       type
@@ -11,6 +11,13 @@ export class LikeModel extends Http {
       url,
       method: 'POST',
       data
+    })
+  }
+
+  getClassicLikeStatus (id: number, category: number, callback: any) {
+    this.request({
+      url: `classic/${category}/${id}/favor`,
+      success: callback
     })
   }
 }
