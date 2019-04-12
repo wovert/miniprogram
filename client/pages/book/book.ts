@@ -3,42 +3,23 @@ const bookModel: BookModel = new BookModel()
 
 Page({
   data: {
+    books: []
   },
   onLoad () {
-    // const promise = new Promise((resolve: any, reject:any) => {
-    //   wx.getSystemInfo({
-    //     success: (res: any) => resolve(res),
-    //     fail: (error: any) => reject(error)
-    //   })
-    // })
-    // promise.then(
-    //   (res: any) => console.log(res),
-    //   (error: any) => console.log(error)
-    // )
-
-    // const hostList = bookModel.getHostList()
-    // hostList.then(res => {
-    //   console.log(res)
-    //   bookModel.getMyBookCount().then(res => {
-    //     console.log(res)
-    //     bookModel.getMyBookCount().then(res => {
-    //       console.log(res)
-    //     })
-    //   })
-    // })
-
     bookModel.getHostList()
     .then(res => {
-      console.log(res)
-      return bookModel.getMyBookCount()
+      this.setData({
+        books: res
+      })
+      // console.log(res)
+      // return bookModel.getMyBookCount()
     })
-    .then(res => {
-      console.log(res)
-      return bookModel.getMyBookCount()
-    })
-    .then(res => {
-      console.log(res)
-    })
-
+    // .then(res => {
+    //   console.log(res)
+    //   return bookModel.getMyBookCount()
+    // })
+    // .then(res => {
+    //   console.log(res)
+    // })
   }
 })
