@@ -20,5 +20,40 @@
 		"autoAudits": false
 	},
 	"appid": "wx8e37091f1ca6b8bd",
-	"condition": {}
+	"condition": {
+		"search": {
+			"current": -1,
+			"list": []
+		},
+		"conversation": {
+			"current": -1,
+			"list": []
+		},
+		"plugin": {
+			"current": -1,
+			"list": []
+		},
+		"game": {
+			"list": []
+		},
+		"miniprogram": {
+			"current": 0,
+			"list": [
+				{
+					"id": 0,
+					"name": "书籍列表页",
+					"pathName": "pages/book/book",
+					"query": "",
+					"scene": 1001
+				},
+				{
+					"id": 1,
+					"name": "书籍详情页",
+					"pathName": "pages/book-detail/book-detail",
+					"query": "bid=7",
+					"scene": 1001
+				}
+			]
+		}
+	}
 }

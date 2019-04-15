@@ -3,7 +3,8 @@ const bookModel: BookModel = new BookModel()
 
 Page({
   data: {
-    books: []
+    books: [],
+    searching: false
   },
   onLoad () {
     bookModel.getHostList()

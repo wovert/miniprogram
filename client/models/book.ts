@@ -1,5 +1,5 @@
 import { 
-  Http 
+  Http
 } from '../utils/http-promise'
 
 export class BookModel extends Http {
@@ -13,6 +13,24 @@ export class BookModel extends Http {
   getMyBookCount () {
     return this.request({
       url: 'book/favor/count'
+    })
+  }
+
+  getDetail (bid: number) {
+    return this.request({
+      url: `book/${bid}/detail`
+    })
+  }
+
+  getLikeStatus (bid: number) {
+    return this.request({
+      url: `/book/${bid}/favor`
+    })
+  }
+
+  getComments(bid: number) {
+    return this.request({
+      url: `book/${bid}/short_comment`
     })
   }
 }

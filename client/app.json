@@ -1,18 +1,22 @@
 {
-  "pages":[
+  "pages": [
     "pages/classic/classic",
     "pages/book/book",
-    "pages/my/my"
+    "pages/my/my",
+    "pages/book-detail/book-detail",
+    "components/tag/index"
   ],
-  "requiredBackgroundModes": ["audio"],
-  "window":{
+  "requiredBackgroundModes": [
+    "audio"
+  ],
+  "window": {
     "navigationBarBackgroundColor": "#fff",
     "navigationBarTitleText": "沃尔特科技公司",
-    "navigationBarTextStyle":"black",
+    "navigationBarTextStyle": "black",
     "navigationStyle": "default",
     "backgroundColor": "#fff",
     "enablePullDownRefresh": false,
-    "backgroundTextStyle":"light"
+    "backgroundTextStyle": "light"
   },
   "tabBar": {
     "selectedColor": "#000",
