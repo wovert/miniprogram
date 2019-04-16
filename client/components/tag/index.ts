@@ -3,6 +3,7 @@ Component({
   options: {
     multipleSlots: true // 组件使用插槽
   },
+  externalClasses: ['tag-class'],
   properties: {
     text: String
   },
