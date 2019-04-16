@@ -1,14 +1,15 @@
-import {
-  BookModel
-} from '../../models/book'
+import { BookModel } from '../../models/book'
+import { LikeModel } from '../../models/like'
 const bookModel: any = new BookModel()
+const likeModel: any = new LikeModel()
 
 Page({
   data: {
     comments: [],
     book: null,
     likeStatus: false,
-    likeCount: 0
+    likeCount: 0,
+    posting: false
   },
 
   /**
@@ -37,7 +38,57 @@ Page({
         likeStatus: res.like_status,
         likeCount: res.fav_nums
       })
-    })   
+    })
+  },
+
+  onLike (event: any) {
+    const likeOrCancle = event.detail.behavior
+    console.log(this.data.book)
+    likeModel.like(likeOrCancle, this.data.book.id, 400)
+  },
+
+  onFakePost (event: any) {
+    this.setData({
+      posting: true
+    })
+  },
+
+  onCancel (event: any) {
+    this.setData({
+      posting: false
+    })
+  },
+
+  onPost (event: any) {
+    const comment = event.detail.text || event.detail.value
+
+    if (!comment) {
+      return
+    }
+
+    if (comment.length > 12) {
+      wx.showToast({
+        title: '短评最多12个字',
+        icon: 'none'
+      })
+      return
+    }
+    bookModel.postComment(this.data.book.id, comment).then((res: any) => {
+      wx.showToast({
+        title: '+ 1',
+        icon: 'none'
+      })
+
+      this.data.comments.unshift({
+        content: comment,
+        nums: 1
+      })
+
+      this.setData({
+        comments:  this.data.comments,
+        posting: false
+      })
+    })
   },
 
   /**

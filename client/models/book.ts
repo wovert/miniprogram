@@ -28,9 +28,20 @@ export class BookModel extends Http {
     })
   }
 
-  getComments(bid: number) {
+  getComments (bid: number) {
     return this.request({
       url: `book/${bid}/short_comment`
+    })
+  }
+
+  postComment (book_id: number, content: string) {
+    return this.request({
+      url: `book/add/short_comment`,
+      method: 'POST',
+      data: {
+        book_id,
+        content
+      }
     })
   }
 }
