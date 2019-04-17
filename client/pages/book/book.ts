@@ -22,5 +22,15 @@ Page({
     // .then(res => {
     //   console.log(res)
     // })
+  },
+  onSearch (event: any) {
+    this.setData({
+      searching: true
+    })
+  },
+  onCancel (event: any) {
+    this.setData({
+      searching: false
+    })
   }
 })
