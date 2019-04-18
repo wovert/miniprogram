@@ -1,6 +1,6 @@
-// import {
-//   KeywordModel
-// } from '../../models/keyword.js'
+import {
+  KeywordModel
+} from '../../models/keyword.js'
 
 import {
   BookModel
@@ -10,8 +10,8 @@ import {
 //   paginationBev
 // } from '../behaviors/pagination.js'
 
-// const keywordModel = new KeywordModel()
-const bookModel = new BookModel()
+const keywordModel: KeywordModel = new KeywordModel()
+const bookModel: KeywordModel = new BookModel()
 
 Component({
   /**
@@ -30,25 +30,25 @@ Component({
    * 组件的初始数据
    */
   data: {
-    historyWords: [],
-    hotWords: [],
-    searching: false,
+    historyWords: [], // 历史搜索
+    hotWords: [], // 热门搜索
+    searching: false, // 是否显示搜索组件
     q: '',
-    loading: false,
+    loading: false, // 加载状态
     loadingCenter: false
   },
 
-  attached() {
-    // this.setData({
-    //   historyWords: keywordModel.getHistory()
-    // })
+  // attached() {
+  //   this.setData({
+  //     historyWords: keywordModel.getHistory()
+  //   })
 
-    // keywordModel.getHot().then(res => {
-    //   this.setData({
-    //     hotWords: res.hot
-    //   })
-    // })
-  },
+  //   keywordModel.getHot().then((res: any) => {
+  //     this.setData({
+  //       hotWords: res.hot
+  //     })
+  //   })
+  // },
 
   /**
    * 组件的方法列表
@@ -64,7 +64,7 @@ Component({
       if (this.hasMore()) {
         this.locked()
         bookModel.search(this.getCurrentStart(), this.data.q)
-          .then(res => {
+          .then((res: any) => {
             this.setMoreData(res.books)
             this.unLocked()
           }, () => {
@@ -73,7 +73,6 @@ Component({
         // 死锁
       }
     },
-
 
     onCancel(event: any) {
       // this.initialize()
@@ -86,20 +85,24 @@ Component({
     },
 
     onConfirm(event: any) {
-      this._showResult()
-      this._showLoadingCenter()
+      // this._showResult()
+      // this._showLoadingCenter()
       // this.initialize() 
       const q = event.detail.value || event.detail.text
-      this.setData({
-        q
-      })
-      bookModel.search(0, q)
-        .then(res => {
-          this.setMoreData(res.books)
-          this.setTotal(res.total)
-          keywordModel.addToHistory(q)
-          this._hideLoadingCenter()
-        })
+      // 测试队列
+      keywordModel.addToHistory(q)
+
+
+      // this.setData({
+      //   q
+      // })
+      // bookModel.search(0, q)
+      //   .then((res: any) => {
+      //     this.setMoreData(res.books)
+      //     this.setTotal(res.total)
+      //     keywordModel.addToHistory(q)
+      //     this._hideLoadingCenter()
+      //   })
     },
 
     _showLoadingCenter() {
