@@ -34,6 +34,7 @@ Component({
     searching: false, // 是否显示搜索组件
     q: '',
     loading: false, // 加载状态
+    dataArray: [], /// 搜索数据
     loadingCenter: false
   },
 
@@ -77,30 +78,30 @@ Component({
       this.triggerEvent('cancel', {}, {})
     },
 
-    // onDelete(event: any) {
-    //   this.initialize()
-    //   this._closeResult()
-    // },
+    onDelete(event: any) {
+      // this.initialize()
+      this._closeResult()
+    },
 
     onConfirm(event: any) {
-      // this._showResult()
+      this._showResult()
       // this._showLoadingCenter()
       // this.initialize() 
       const q = event.detail.value || event.detail.text
-      // 测试队列
-      keywordModel.addToHistory(q)
 
-
-      // this.setData({
-      //   q
-      // })
-      // bookModel.search(0, q)
-      //   .then((res: any) => {
-      //     this.setMoreData(res.books)
-      //     this.setTotal(res.total)
-      //     keywordModel.addToHistory(q)
-      //     this._hideLoadingCenter()
-      //   })
+      this.setData({
+        q
+      })
+      bookModel.search(0, q)
+        .then((res: any) => {
+          this.setData({
+            dataArray: res.books
+          })
+          // this.setMoreData(res.books)
+          // this.setTotal(res.total)
+          keywordModel.addToHistory(q)
+          // this._hideLoadingCenter()
+        })
     },
 
     _showLoadingCenter() {

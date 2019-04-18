@@ -10,6 +10,16 @@ export class BookModel extends Http {
     })
   }
 
+  search(start: number, q: string) {
+    return this.request({
+      url: 'book/search?summary=1',
+      data: {
+        q,
+        start
+      }
+    })
+  }
+
   getMyBookCount () {
     return this.request({
       url: 'book/favor/count'
