@@ -11,7 +11,7 @@ import {
 // } from '../behaviors/pagination.js'
 
 const keywordModel: KeywordModel = new KeywordModel()
-const bookModel: KeywordModel = new BookModel()
+const bookModel: BookModel = new BookModel()
 
 Component({
   /**
@@ -25,7 +25,6 @@ Component({
       // true, true, true,
     }
   },
-
   /**
    * 组件的初始数据
    */
@@ -38,51 +37,50 @@ Component({
     loadingCenter: false
   },
 
-  // attached() {
-  //   this.setData({
-  //     historyWords: keywordModel.getHistory()
-  //   })
-
-  //   keywordModel.getHot().then((res: any) => {
-  //     this.setData({
-  //       hotWords: res.hot
-  //     })
-  //   })
-  // },
+  attached () {
+    this.setData({
+      historyWords: keywordModel.getHistory()
+    })
+    keywordModel.getHot().then((res: any) => {
+      this.setData({
+        hotWords: res.hot
+      })
+    })
+  },
 
   /**
    * 组件的方法列表
    */
   methods: {
-    loadMore() {
-      if (!this.data.q) {
-        return
-      }
-      if (this.isLocked()) {
-        return
-      }
-      if (this.hasMore()) {
-        this.locked()
-        bookModel.search(this.getCurrentStart(), this.data.q)
-          .then((res: any) => {
-            this.setMoreData(res.books)
-            this.unLocked()
-          }, () => {
-            this.unLocked()
-          })
-        // 死锁
-      }
-    },
+    // loadMore () {
+    //   if (!this.data.q) {
+    //     return
+    //   }
+    //   if (this.isLocked()) {
+    //     return
+    //   }
+    //   if (this.hasMore()) {
+    //     this.locked()
+    //     bookModel.search(this.getCurrentStart(), this.data.q)
+    //       .then((res: any) => {
+    //         this.setMoreData(res.books)
+    //         this.unLocked()
+    //       }, () => {
+    //         this.unLocked()
+    //       })
+    //     // 死锁
+    //   }
+    // },
 
     onCancel(event: any) {
       // this.initialize()
       this.triggerEvent('cancel', {}, {})
     },
 
-    onDelete(event: any) {
-      this.initialize()
-      this._closeResult()
-    },
+    // onDelete(event: any) {
+    //   this.initialize()
+    //   this._closeResult()
+    // },
 
     onConfirm(event: any) {
       // this._showResult()

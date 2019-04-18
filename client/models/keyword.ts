@@ -1,4 +1,8 @@
-export class KeywordModel {
+import { 
+  Http
+} from '../utils/http-promise'
+
+export class KeywordModel extends Http {
   key: string = 'q'
   maxLength: number = 10
 
@@ -11,7 +15,9 @@ export class KeywordModel {
   }
 
   getHot () {
-    
+    return this.request({
+      url:'/book/hot_keyword'
+    })
   }
 
   addToHistory (keyword: string) {
