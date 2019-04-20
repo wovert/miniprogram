@@ -1,61 +1,119 @@
-//index.js
-//获取应用实例
-import { IMyApp } from '../../app'
+import { ClassicModel } from '../../models/classic'
+import { BookModel } from '../../models/book'
+import { promisic } from '../../utils/common'
 
-const app = getApp<IMyApp>()
+const classicModel = new ClassicModel()
+const bookModel = new BookModel()
 
 Page({
+
+  /**
+   * 页面的初始数据
+   */
   data: {
-    motto: '点击 “编译” 以构建',
-    userInfo: {},
-    hasUserInfo: false,
-    canIUse: false
+    authorized: false, // 用户是否授权
+    userInfo: null,
+    bookCount: 0,
+    classics: null
   },
-  //事件处理函数
-  bindViewTap() {
-    wx.navigateTo({
-      url: '../logs/logs'
-    })
+
+  onShow(options: any) {
+    this.userAuthorized1()
+    this.getMyBookCount()
+    this.getMyFavor()
+    // wx.getUserInfo({
+    //   success:data=>{
+    //     console.log(data)
+    //   }
+    // })
   },
-  onLoad () {
-    // !从setData的类型里去除了null和undefined
-    this.setData!({
-      canIUse: wx.canIUse('button.open-type.getUserInfo')
-    })
-    if (app.globalData.userInfo) {
-      this.setData!({
-        userInfo: app.globalData.userInfo,
-        hasUserInfo: true,
+
+  getMyFavor() {
+    classicModel.getMyFavor((res: any) => {
+      this.setData({
+        classics: res
       })
-    } else if (this.data.canIUse) {
-      // 由于 getUserInfo 是网络请求，可能会在 Page.onLoad 之后才返回
-      // 所以此处加入 callback 以防止这种情况
-      app.userInfoReadyCallback = (res: any) => {
-        this.setData!({
-          userInfo: res,
-          hasUserInfo: true
+    })
+  },
+
+  getMyBookCount() {
+    bookModel.getMyBookCount()
+      .then((res: any) => {
+        this.setData({
+          bookCount: res.count
         })
-      }
-    } else {
-      // 在没有 open-type=getUserInfo 版本的兼容处理
-      wx.getUserInfo({
-        success: (res: any) => {
-          app.globalData.userInfo = res.userInfo
-          this.setData!({
-            userInfo: res.userInfo,
-            hasUserInfo: true
+      })
+  },
+
+  userAuthorized1() {
+    promisic(wx.getSetting)()
+      .then((data: any) => {
+        if (data.authSetting['scope.userInfo']) {
+          return promisic(wx.getUserInfo)()
+        }
+        return false
+      })
+      .then((data: any) => {
+        if (!data) return 
+        this.setData({
+          authorized: true,
+          userInfo: data.userInfo
+        })
+      })
+  },
+
+  userAuthorized() {
+    wx.getSetting({
+      success: (data: any) => {
+        if (data.authSetting['scope.userInfo']) {
+          // 用户授权才能获取用户数据
+          wx.getUserInfo({
+            success: (data: any) => {
+              console.log(data)
+              this.setData({
+                authorized: true,
+                userInfo: data.userInfo
+              })
+            }
           })
         }
+      }
+    })
+  },
+
+  onGetUserInfo(event: any) {
+    console.log(event)    
+    const userInfo = event.detail.userInfo
+    if (userInfo) {
+      this.setData({
+        userInfo,
+        authorized: true
       })
     }
   },
 
-  getUserInfo(e: any) {
-    console.log(e)
-    app.globalData.userInfo = e.detail.userInfo
-    this.setData!({
-      userInfo: e.detail.userInfo,
-      hasUserInfo: true
+  onJumpToAbout(event: any) {
+    wx.navigateTo({
+      url: '/pages/about/about',
+    })
+  },
+
+  onStudy(event: any) {
+    wx.navigateTo({
+      url: '/pages/course/course',
+    })
+  },
+
+  onJumpToDetail(event: any){
+    const cid = event.detail.cid
+    // const type = event.detail.type
+    wx.navigateTo({
+      url:`/pages/book-detail/book-detail?bid=${cid}`
     })
   }
 })
+
+    // wx.navigateTo({
+    //   url:`/pages/classic-detail/index?cid=${cid}
+    //     &type=${type}`
+    // })

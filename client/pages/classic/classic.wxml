@@ -1,10 +1,15 @@
 <view class="container">
   <view class="header">
     <c-episode class="episode" index="{{dataInfo.index}}" />
-    <c-like class="like"
-            bind:like="onLike" 
-            like="{{likeStatus}}" 
-            count="{{likeCount}}" />
+    <view class="like-container">
+      <c-like class="like"
+              bind:like="onLike" 
+              like="{{likeStatus}}" 
+              count="{{likeCount}}" />
+      <c-button class="share-btn" open-type="share">
+        <image class="share" slot="img" src="/images/icon/share.png" />
+      </c-button>
+    </view>
   </view>
   <c-movie hidden="{{dataInfo.type !== 100}}" img="{{dataInfo.image}}" 
            content="{{dataInfo.content}}" />
