@@ -24,7 +24,7 @@
     ]
   },
   "include": [
-    "./**/*.ts"
+    "./**/*.ts", "components/classic/classic-beh.js"
   ],
   "exclude": [
     "node_modules",

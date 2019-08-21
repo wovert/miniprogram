@@ -27,7 +27,16 @@ class Http {
       fail!: () => showError(1)
     })
   }
-  showError = (errorCode: number) => {
+  showError(errorCode: number) {
+    errorCode = !errorCode ? 1 : errorCode
+    const tip = tips[errorCode]
+    wx.showToast({
+      title: tip ? tip : tips[1],
+      icon: 'none',
+      duration: 2000
+    })
+  }
+  _show_error = (errorCode: number) => {
     errorCode = !errorCode ? 1 : errorCode
     const tip = tips[errorCode]
     wx.showToast({

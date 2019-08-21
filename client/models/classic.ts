@@ -1,4 +1,6 @@
-import { Http } from '../utils/http'
+import { 
+  Http
+} from '../utils/http-promise'
 
 export class ClassicModel extends Http {
 

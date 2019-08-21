@@ -1,4 +1,4 @@
-import { Http } from '../utils/http'
+import { Http } from '../utils/http-promise'
 
 export class LikeModel extends Http {
   like (behavior: string, art_id: number, type: number) {

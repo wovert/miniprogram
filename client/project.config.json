@@ -4,7 +4,7 @@
 		"ignore": []
 	},
 	"compileType": "miniprogram",
-	"libVersion": "2.6.5",
+	"libVersion": "2.8.0",
 	"projectname": "client",
 	"scripts": {
 		"beforeCompile": "npm run compile",
@@ -13,13 +13,24 @@
 	},
 	"setting": {
 		"urlCheck": false,
-		"es6": true,
-		"postcss": true,
-		"minified": true,
+		"es6": false,
+		"enhance": false,
+		"postcss": false,
+		"minified": false,
 		"newFeature": true,
-		"autoAudits": false
+		"autoAudits": false,
+		"checkInvalidKey": true,
+		"checkSiteMap": true,
+		"uploadWithSourceMap": true,
+		"babelSetting": {
+			"ignore": [],
+			"disablePlugins": [],
+			"outputPath": ""
+		}
 	},
 	"appid": "wx8e37091f1ca6b8bd",
+	"simulatorType": "wechat",
+	"simulatorPluginLibVersion": {},
 	"condition": {
 		"search": {
 			"current": -1,

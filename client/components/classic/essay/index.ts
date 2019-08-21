@@ -1,4 +1,4 @@
-import {classicBeh} from '../classic-beh'
+import { classicBeh } from '../classic-beh'
 
 Component({
   behaviors:[classicBeh],
