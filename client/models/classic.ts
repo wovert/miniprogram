@@ -4,15 +4,16 @@ import {
 
 export class ClassicModel extends Http {
 
-  getLatest (callback: any) {
+  getLatest(callback: any) {
     this.request({
       url: 'classic/latest',
-      success: (res: any) => {
-        callback(res)
-        this._setLatestIndex(res.index)
-        const key = this._getKey(res.index)
-        wx.setStorageSync(key, res)
-      }
+    }).then((res: any) => {
+      callback(res)
+      this._setLatestIndex(res.index)
+      const key = this._getKey(res.index)
+      wx.setStorageSync(key, res)
+    }, (error: any) => {
+      console.log('fail:', error)
     })
   }
 
@@ -24,11 +25,10 @@ export class ClassicModel extends Http {
       // 从接口中获取数据
       this.request({
         url: `classic/${index}/${nextOrPrevious}`,
-        success: (res: any) => {
+      }).then((res: any) => {
           // 写入缓存
           wx.setStorageSync(this._getKey(res.index), res)
-          callback(res)
-        }
+          callback(res)        
       })
     } else {
       callback(classic)

@@ -1,10 +1,11 @@
-import { IMyApp } from '../../app'
+// import { IMyApp } from '../../app'
 import { ClassicModel } from '../../models/classic'
 import { LikeModel } from '../../models/like'
 const classicModel: ClassicModel = new ClassicModel()
 const likeModel: LikeModel = new LikeModel()
 
-const app = getApp<IMyApp>()
+// const app = getApp<IMyApp>()
+
 
 Page({
   data: {
@@ -18,10 +19,9 @@ Page({
   /**
    * 监听页面加载
    */
-  onLoad () {
+  onLoad() {
     /// 数据保存在 Storage
     classicModel.getLatest((res: any) => {
-      // this._getLikeStatus(res.id, res.type)
       this.setData({
         dataInfo: res,
         likeCount: res.fav_nums,
