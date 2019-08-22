@@ -32,6 +32,8 @@ class Http {
   }
 
   // 自动 无感知重新刷新令牌
+  // 2小时
+  // token 1小时59分59秒 超过2小时
   _request (url: string, resolve: any, reject: any, data: object = {}, method: string ='GET', noRefetch = false) {
     wx.request({
       url: config.api_base_url + url,

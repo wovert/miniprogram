@@ -34,7 +34,7 @@ export class BookModel extends Http {
 
   getLikeStatus (bid: number) {
     return this.request({
-      url: `/book/${bid}/favor`
+      url: `book/${bid}/favor`
     })
   }
 
